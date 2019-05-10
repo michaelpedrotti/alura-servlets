@@ -9,6 +9,8 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- Gera bug no jetty pois a classe está marcada como depredecated e não vai no pacote .war -->
+  <!-- 
   <servlet>
     <servlet-name>EmpresaListServlet</servlet-name>
     <servlet-class>br.com.alura.servlets.Empresa.ListServlet</servlet-class>
@@ -17,4 +19,5 @@
     <servlet-name>EmpresaListServlet</servlet-name>
     <url-pattern>/empresa/listar</url-pattern>
   </servlet-mapping>
+   -->
 </web-app>

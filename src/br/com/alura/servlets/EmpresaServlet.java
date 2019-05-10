@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.com.alura.models.empresas.Database;
 import br.com.alura.models.empresas.Empresa;
@@ -30,23 +29,14 @@ public class EmpresaServlet extends HttpServlet {
 		// /alura
 		//System.out.println(request.getContextPath());
 		
-		///empresa/form
-		//System.out.println(request.getRequestURI().substring(request.getContextPath().length()));
+		String action = (String)request.getAttribute("action");
 		
-		// sem sessão
-		if(request.getSession().getAttribute("user") == null){
-			this.login(request, response);
-			return;
+		System.out.println("servlet action " + action);
+
+		if(action.isEmpty()){
+			throw new ServletException("Action not found at servelet /empresa");
 		}
 		
-		String route = request.getRequestURI()
-				.substring(request.getContextPath().length())
-				.replaceFirst("/", "");
-		
-		// controler/action/id
-		String[] arr = route.split("/");
-		String action = (arr.length >= 2) ? arr[1] : "index";
-		//Integer id = (arr.length == 3) ? Integer.valueOf(arr[2]) : 0;
 		
 		try {
 			this.getClass()
@@ -56,32 +46,9 @@ public class EmpresaServlet extends HttpServlet {
 		catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
-				
-		/*switch(route){
-		
-			case "empresa":
-				this.index(request, response);
-				break;
-				
-			case "empresa/form":
-				this.form(request, response);
-				break;
-				
-			case "empresa/remove":
-				this.remove(request, response);
-				break;
-				
-			case "empresa/login":
-				this.login(request, response);
-				break;
-				
-			case "empresa/logout":
-				this.logout(request, response);
-				break;
-		
-		}*/
 	}
 
+	@SuppressWarnings("unused")
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
 		//request.getSession().removeAttribute("user");
