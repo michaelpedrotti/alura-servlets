@@ -15,7 +15,11 @@ import javax.servlet.http.HttpServletRequest;
  * antes data execução do servlet. Pode ordenar a pilha somente através do web.xml e não através
  * de annotation.
  * 
- * Os demais frameworks utilizam o termo interceptador.
+ * Os demais frameworks utilizam o termo i	@Override
+	public void init(FilterConfig filterConfig) throws ServletException { }
+	
+	@Override
+	public void destroy() { }nterceptador.
  * 
  * @see br.com.alura.servlets.EmpresaServlet
  */
