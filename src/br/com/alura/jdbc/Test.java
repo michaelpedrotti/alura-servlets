@@ -1,24 +1,54 @@
 package br.com.alura.jdbc;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Test {
 
 	public static void main(String[] args) throws SQLException  {
 
-		Database db = Database.newInstance();	
 		
-		ResultSet result = db.query("SELECT * FROM Produto");
+		Produto p = new Produto();
+		p.load(24);
+		p.remove();
+		System.out.println(p.getDescricao());
 		
-		while(result.next()){
-			
-			System.out.println(result.getInt("id"));
-			System.out.println(result.getString("Nome"));
-		}
+//		
+//		p.setNome("Monitor LG 24p");
+//		p.setDescricao("Monitor LG 24 polegadas");
+//		p.save();
 		
-		result.close();
+//		p.remove();
 		
-		db.close();
+//		p.setNome("EEE");
+//		p.setDescricao("DDD");
+//		p.save();
+//		
+//		
+//		p.setDescricao("ttt");
+//		p.save();
+//		
+//		p.remove();
+//		
+//		System.out.println(p.getId());
+		
+		p.getConnection().close();
+		
+		
+//		Database db = Database.newInstance();	
+
+		
+		//db.exec("insert into Produto (nome, descricao) values ('Notebook', 'Notebook i5')");
+		
+//		ResultSet result = db.query("SELECT * FROM Produto");
+//		
+//		while(result.next()){
+//			
+//			System.out.println(result.getInt("id"));
+//			System.out.println(result.getString("Nome"));
+//		}
+//		
+//		result.close();
+//		
+//		db.close();
 	}
 }
